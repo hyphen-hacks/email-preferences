@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hyphen-hacks-2019"
+  },
+  "targets": {
+    "hyphen-hacks-2019": {
+      "hosting": {
+        "emails-hyphen-hacks": [
+          "emails-hyphen-hacks"
+        ]
+      }
+    }
+  }
+}
