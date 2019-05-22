@@ -1,7 +1,12 @@
 <template>
+
   <main class="home page">
-    <h1 v-if="!success">Unsubscribe</h1>
-    <svg v-if="!success" id="08e565a9-d273-44a5-8e62-fb3ff03af726" data-name="Layer 1"
+    <h1 v-if="!valid">Unsubscribe</h1>
+    <p v-if="!valid" class="invalidText">Uh oh, it looks like your email is invalid. Please <a href="mailto:support@hyphen-hacks.com">contact support</a> for more
+      information.</p>
+    <a v-if="!valid" class="button" href="mailto:support@hyphen-hacks.com">Contact Support</a>
+    <h1 v-if="!success && valid">Unsubscribe</h1>
+    <svg v-if="!success&& valid" id="08e565a9-d273-44a5-8e62-fb3ff03af726" data-name="Layer 1"
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960.22" height="727.85"
          viewBox="0 0 960.22 727.85">
       <defs>
@@ -157,9 +162,11 @@
       <rect x="381.58" y="361.85" width="153" height="10" fill="#dc8f2a" opacity="0.3"/>
       <rect x="381.58" y="387.85" width="209" height="10" fill="#dc8f2a" opacity="0.3"/>
     </svg>
-    <p v-if="!success">If you ended up on our mailing list by accident or wish to no longer receive our occasional, non
+    <p v-if="!success && valid">If you ended up on our mailing list by accident or wish to no longer receive our
+      occasional, non
       spam, emails about upcoming Hyphen-Hacks events please click the button below.</p>
-    <svg v-if="success" class="success" id="b49c538b-d2f0-4d56-8d1f-7f4005552b2e" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+    <svg v-if="success && valid" class="success" id="b49c538b-d2f0-4d56-8d1f-7f4005552b2e" data-name="Layer 1"
+         xmlns="http://www.w3.org/2000/svg"
          width="809.83511" height="872.15034" viewBox="0 0 809.83511 872.15034"><title>completed</title>
       <circle cx="436.83511" cy="499.15034" r="373" fill="#f2f2f2"/>
       <path
@@ -237,8 +244,8 @@
           d="M280.93178,521.85915c-9.47038.07641-22.005-1.47514-24.52812-3.01211-1.92153-1.17048-2.68724-5.37044-2.94344-7.30813-.17743.00762-.28.01091-.28.01091s.53129,6.76525,3.05446,8.30221,15.05774,3.08853,24.52813,3.01212c2.73372-.02205,3.678-.99467,3.62615-2.4352C284.00915,521.29928,282.96653,521.84275,280.93178,521.85915Z"
           transform="translate(-195.08244 -13.92483)" opacity="0.2"/>
     </svg>
-    <h2 v-if="success">UNSUBSCRIBE SUCCESSFUL!</h2>
-    <button @click="unsubscribe" v-if="!success">UNSUBSCRIBE</button>
+    <h2 v-if="success && valid">UNSUBSCRIBE SUCCESSFUL!</h2>
+    <button @click="unsubscribe" v-if="!success && valid">UNSUBSCRIBE</button>
   </main>
 </template>
 
@@ -247,7 +254,18 @@
     name: "unsubscribe",
     data() {
       return {
+        valid: false,
         success: false
+      }
+    },
+    mounted() {
+      function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      if (this.$route.params.email && validateEmail(this.$route.params.email)) {
+        this.valid = true
       }
     },
     methods: {
@@ -265,7 +283,7 @@
           console.log(resp)
           if (resp.success == true) {
             this.success = true
-          }else if (resp.error.type == 'email does not exist') {
+          } else if (resp.error.type == 'email does not exist') {
             this.success = true
           }
         })

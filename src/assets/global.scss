@@ -92,7 +92,10 @@ body, #app {
       border-bottom: $yellow 10px solid;
     }
   }
-
+  a {
+    color: $link;
+    text-decoration: underline;
+  }
   h2 {
     font-family: 'Space Mono', monospace;
     font-size: 2rem;
@@ -106,6 +109,10 @@ body, #app {
       font-size: 1.5rem;
 
     }
+  }
+
+  .invalidText {
+    margin: auto;
   }
 
   p {
