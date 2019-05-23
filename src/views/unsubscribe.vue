@@ -5,7 +5,7 @@
     <p v-if="!valid" class="invalidText">Uh oh, it looks like your email is invalid. Please <a href="mailto:support@hyphen-hacks.com">contact support</a> for more
       information.</p>
     <a v-if="!valid" class="button" href="mailto:support@hyphen-hacks.com">Contact Support</a>
-    <h1 v-if="!success && valid">Unsubscribe</h1>
+    <h1 v-if="!success && valid"><span>Unsubscribe</span></h1>
     <svg v-if="!success&& valid" id="08e565a9-d273-44a5-8e62-fb3ff03af726" data-name="Layer 1"
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960.22" height="727.85"
          viewBox="0 0 960.22 727.85">
