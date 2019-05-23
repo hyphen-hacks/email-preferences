@@ -1,7 +1,7 @@
 <template>
 
   <main class="home page">
-    <h1 v-if="!valid">Unsubscribe</h1>
+    <h1 v-if="!valid">Unsubscribe <span></span></h1>
     <p v-if="!valid" class="invalidText">Uh oh, it looks like your email is invalid. Please <a href="mailto:support@hyphen-hacks.com">contact support</a> for more
       information.</p>
     <a v-if="!valid" class="button" href="mailto:support@hyphen-hacks.com">Contact Support</a>

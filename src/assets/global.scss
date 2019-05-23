@@ -81,10 +81,14 @@ body, #app {
 
   h1 {
     font-family: 'Space Mono', monospace;
-    background-image: linear-gradient($yellow, $yellow);
-    background-size: 100% 25%;
-    background-repeat: no-repeat;
-    background-position: left bottom;
+
+    span {
+      background-image: linear-gradient($yellow, $yellow);
+      background-size: 100% 25%;
+      background-repeat: no-repeat;
+      background-position: left bottom;
+    }
+
     font-size: 3rem;
     text-align: center;
     display: inline-block;
@@ -95,10 +99,12 @@ body, #app {
       border-bottom: $yellow 10px solid;
     }
   }
+
   a {
     color: $link;
     text-decoration: underline;
   }
+
   h2 {
     font-family: 'Space Mono', monospace;
     font-size: 2rem;
